@@ -1,0 +1,35 @@
+{
+    "name": "willingness",
+    "cal-basis": 15000,
+    "children": [
+
+        {
+            "name": "願意捐贈的人",
+            "percentage": "32.50%",
+            "size": 3250,
+            "children": [
+
+
+                { "name": "願意捐獻且已經登記的人", "size": 378.3, "percentage": "11.64%" },
+                { "name": "願意捐獻但未登記的人", "size": 2871.7, "percentage": "88.36%" }
+
+
+
+            ]
+        },
+
+        {
+            "name": "不願意捐贈的人",
+            "percentage": "9.80%",
+            "size": 980,
+            "children": [{
+                "name": "不願意捐贈的人",
+                "size": 980,
+                "percentage": "9.80%"
+            }]
+        }
+    ]
+
+
+
+}
