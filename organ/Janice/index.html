@@ -66,16 +66,10 @@ var margin = {top: 40, right: 20, bottom: 100, left: 100},
 
 var format = d3.format(".0");
 
-var x = d3.scaleOrdinal()
-
-{ 
-  [Function: scale]
-  domain: [Function],
-  range: [Function],
-  unknown: [Function],
-  copy: [Function] 
-}
-
+var x = d3.scaleBand()
+    .rangeRound([0, width])
+    .padding(0.1);
+  
 var y = d3.scale.linear()
     .range([height, 0]);
 
