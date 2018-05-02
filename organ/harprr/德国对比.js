@@ -25,9 +25,10 @@ var data = [
     }
   ];
   
-  var width = 500;
-  var height = 300;
+  var width = 750;
+  var height = 450;
   var margin = 50;
+  var viewBox = "0 0 750 450";
   var duration = 250;
   
   var lineOpacity = "0.25";
@@ -67,6 +68,7 @@ var data = [
   var svg = d3.select("#chart").append("svg")
     .attr("width", (width+margin)+"px")
     .attr("height", (height+margin)+"px")
+    .attr('viewBox', '0 0 ' + (width+margin) + ' ' + (height+margin))
     .append('g')
     .attr("transform", `translate(${margin}, ${margin})`);
   
@@ -90,7 +92,7 @@ var data = [
           .text(d.name)
           .attr("text-anchor", "middle")
           .attr("x", (width-margin)/2)
-          .attr("y", 5);
+          .attr("y", 150);
       })
     .on("mouseout", function(d) {
         svg.select(".title-text").remove();
@@ -182,3 +184,10 @@ var data = [
     .attr("transform", "rotate(-90)")
     .attr("fill", "#000")
     .text("每百萬人中器官捐贈者人數");
+
+    svg.append("text")
+    .attr("class", "title")
+    .attr("x", (width / 2))
+    .attr("y", 0 - (margin.top / 2))
+    .attr("text-anchor", "middle")
+    .text("奧地利與德國對比 －近年每百萬人中器官捐贈者人數")
