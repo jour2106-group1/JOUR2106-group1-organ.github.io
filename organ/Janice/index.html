@@ -66,8 +66,17 @@ var margin = {top: 40, right: 20, bottom: 100, left: 100},
 
 var format = d3.format(".0");
 
+//var x = d3.scaleOrdinal()//
+    //.rangeRoundBands([0, width], .1);//
 var x = d3.scaleOrdinal()
-    .rangeRoundBands([0, width], .1);
+
+{ 
+  [Function: scale]
+  domain: [Function],
+  range: [Function],
+  unknown: [Function],
+  copy: [Function] 
+}
 
 var y = d3.scale.linear()
     .range([height, 0]);
