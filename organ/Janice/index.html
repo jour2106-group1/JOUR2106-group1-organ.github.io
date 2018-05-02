@@ -79,13 +79,13 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .tickFormat(formatPercent);
+    .tickFormat(format);
 
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>cases</strong> <span style='color:red'>" + d.frequency + "</span>";
+    return "<strong>frequency</strong> <span style='color:red'>" + d.frequency + "</span>";
   })
 
 var svg = d3.select("body").append("svg")
