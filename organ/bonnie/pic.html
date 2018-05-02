@@ -1,61 +1,129 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
     <style>
+        .row {
+            height: 600px;
+        }
+        
         .container {
             position: relative;
             width: 60%;
+            margin-left: 30px;
         }
         
         .image {
             display: block;
             width: 100%;
+            min-width: 230px;
+            max-width: 350px;
+            /* max-height: 420px; */
             height: auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 5px;
         }
         
         .overlay {
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 0;
+            left: 15px;
             right: 0;
-            height: 100%;
+            height: auto;
             width: 100%;
+            min-width: 230px;
+            max-width: 350px;
             opacity: 0;
             transition: .5s ease;
-            background-color: rgba(0, 0, 0, 0.516);
+            /* background-color: rgba(0, 0, 0, 0.516); */
+            background-color: rgba(252, 250, 250, 0.783);
         }
         
         .container:hover .overlay {
-            opacity: 0.8;
+            opacity: 0.97;
         }
         
         .text {
-            color: white;
-            font-size: 20px;
+            color: black;
+            font-size: 1.2em;
             position: absolute;
-            top: 30%;
-            left: 45%;
-            transform: translate(-40%, -50%);
-            -ms-transform: translate(-50%, -50%);
+            top: 10%;
+            left: 10%;
+            /* transform: translate(-40%, -50%); */
+            /* -ms-transform: translate(-50%, -50%); */
             text-align: center;
+        }
+        
+        mark.red {
+            color: orangered;
+            stroke-width: 2px;
+            left: 15%;
+            font-size: 30px;
         }
     </style>
 </head>
 
 <body>
-    <h2>PIC EFFECT demo</h2>
 
-    <div class="container">
-        <img src="lung.png" alt="Avatar" class="image">
-        <div class="overlay">
-            <div class="text">
-                <p>等候人數： <br/>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="container">
+                <img src="kidney.png" alt="Avatar" class="image">
+                <div class="overlay">
 
-                </p>
-                <p style="font-size:25px">2000人</p>
+                    <img src="kidney3.png" class="image"></img>
+                    <!-- <div class="text">
+                        <p>&nbsp &nbsp肺移植輪候人數： <br/>
+                            <mark class="red">20人</mark>
+                            <br/> 年均肺移植手術數量：
+                            <br/>
+                            <mark class="red">8人</mark>
+                            <br/>
 
+                        </p>
+
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="container">
+                <img src="liver.png" alt="Avatar" class="image">
+                <div class="overlay">
+                    <img src="liver3.png" class="image"></img>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="container">
+                <img src="heart.png" alt="Avatar" class="image">
+                <div class="overlay">
+
+
+                    <img src="heart3.png" class="image"></img>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-12 col-md-6 col-lg-3 ">
+            <div class="container ">
+                <img src="lung.png " alt="Avatar " class="image ">
+                <div class="overlay ">
+                    <img src="lung3.png" class="image"></img>
+                </div>
             </div>
         </div>
     </div>
