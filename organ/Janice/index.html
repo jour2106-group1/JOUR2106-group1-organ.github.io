@@ -74,12 +74,10 @@ var y = d3.scaleLinear()
     .range([height, 0]);
 
 var xAxis = d3.axisBottom()
-    .scale(x)
-    .orient("bottom");
+    .scale(x);
 
 var yAxis = d3.axisLeft()
     .scale(y)
-    .orient("left")
     .tickFormat(format);
 
 var tip = d3.tip()
