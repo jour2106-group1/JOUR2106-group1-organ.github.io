@@ -1,0 +1,289 @@
+<html>
+
+<head>
+    <title>歷年登記人數</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        p {
+            position: relative;
+            padding-left: 10%;
+        }
+        /* for charts */
+        
+        svg {
+            font-family: Sans-Serif, Arial;
+        }
+        
+        .line {
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .axis path {
+            stroke: black;
+        }
+        
+        .text {
+            font-size: 13px;
+            fill: #003366;
+        }
+        
+        .title-text {
+            font-size: 16px;
+            fill: #003366;
+        }
+        
+        .axisGrey line {
+            stroke: #C0C0C0;
+        }
+        
+        .axisGrey path {
+            stroke: #C0C0C0;
+        }
+        
+        .axisGrey text {
+            stroke: #C0C0C0;
+            font-size: 12px;
+            stroke-width: 0.7px;
+        }
+        
+        .circleHover {
+            fill: orange;
+        }
+        
+        .circleNormal {
+            fill: steelblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart">
+        <!-- <p>
+            香港中央名冊歷年器官捐贈登記人數
+        </p> -->
+
+        <script>
+            var data = [{
+                    name: "香港中央名冊歷年器官捐贈登記人數",
+                    values: [{
+                            date: "2008",
+                            registration: "0"
+                        }, {
+                            date: "2009",
+                            registration: "45150"
+                        }, {
+                            date: "2010",
+                            registration: "23896"
+                        }, {
+                            date: "2011",
+                            registration: "22610"
+                        }, {
+                            date: "2012",
+                            registration: "27518"
+                        }, {
+                            date: "2013",
+                            registration: "24036"
+                        }, {
+                            date: "2014",
+                            registration: "19868"
+                        }, {
+                            date: "2015",
+                            registration: "29357"
+                        }, {
+                            date: "2016",
+                            registration: "52550"
+                        }, {
+                            date: "2017",
+                            registration: "37285"
+                        }
+
+                    ]
+                },
+
+
+            ];
+
+            var width = 500;
+            var height = 350;
+            var margin = 50;
+            var duration = 250;
+
+            var lineOpacity = "0.25";
+            var lineOpacityHover = "0.85";
+            var otherLinesOpacityHover = "0.2";
+            var lineStroke = "1.5px";
+            var lineStrokeHover = "2.5px";
+
+            var circleOpacity = '0.85';
+            var circleOpacityOnLineHover = "0.25"
+            var circleRadius = 3;
+            var circleRadiusHover = 8;
+
+
+
+            /* Format Data */
+            var parseDate = d3.timeParse("%Y");
+            data.forEach(function(d) {
+                d.values.forEach(function(d) {
+                    d.date = parseDate(d.date);
+                    d.registration = +d.registration;
+                });
+            });
+
+
+            /* Scale */
+            var xScale = d3.scaleTime()
+                .domain(d3.extent(data[0].values, d => d.date))
+                .range([0, width - margin]);
+
+            var yScale = d3.scaleLinear()
+                .domain([0, d3.max(data[0].values, d => d.registration) + 5000])
+                .range([height - margin, 0]);
+
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+            /* Add SVG */
+            var svg = d3.select("#chart").append("svg")
+                .attr("width", (width + margin) + "px")
+                .attr("height", (height + margin) + "px")
+                .append('g')
+                .attr("transform", `translate(${margin}, ${margin})`);
+
+
+            /* Add line into SVG */
+            var line = d3.line()
+                .x(d => xScale(d.date))
+                .y(d => yScale(d.registration));
+
+
+            let lines = svg.append('g')
+                .attr('class', 'lines');
+
+            lines.selectAll('.line-group')
+                .data(data).enter()
+                .append('g')
+                .attr('class', 'line-group')
+
+
+
+            .on("mouseover", function(d, i) {
+                // svg.append("text")
+                //     .attr("class", "title-text")
+                //     // .style("fill", color(i))
+                //     .text(d.name)
+                //     .attr("text-anchor", "middle")
+                //     .attr("x", (width - margin) / 2)
+                //     .attr("y", 5);
+            })
+
+            .on("mouseout", function(d) {
+                    svg.select(".title-text");
+                    // svg.select(".title-text").remove();
+                })
+                .append('path')
+                .attr('class', 'line')
+                .attr('d', d => line(d.values))
+                .style('stroke', (d, i) => color(i))
+                .style('opacity', lineOpacity)
+                .on("mouseover", function(d) {
+                    d3.selectAll('.line')
+                        .style('opacity', otherLinesOpacityHover);
+                    d3.selectAll('.circle')
+                        .style('opacity', circleOpacityOnLineHover);
+                    d3.select(this)
+                        .style('opacity', lineOpacityHover)
+                        .style("stroke-width", lineStrokeHover)
+                        .style("cursor", "pointer");
+                })
+                .on("mouseout", function(d) {
+                    d3.selectAll(".line")
+                        .style('opacity', lineOpacity);
+                    d3.selectAll('.circle')
+                        .style('opacity', circleOpacity);
+                    d3.select(this)
+                        .style("stroke-width", lineStroke)
+                        .style("cursor", "none");
+                });
+
+
+            /* Add circles in the line */
+            lines.selectAll("circle-group")
+                .data(data).enter()
+                .append("g")
+                .style("fill", (d, i) => color(i))
+                .selectAll("circle")
+                .data(d => d.values).enter()
+                .append("g")
+                .attr("class", "circle")
+                .on("mouseover", function(d) {
+                    d3.select(this)
+                        .style("cursor", "pointer")
+                        .append("text")
+                        .attr("class", "text")
+                        // .text(`${d.registration}`)
+                        .text(d.registration + "人")
+                        .attr("x", d => xScale(d.date) + 5)
+                        .attr("y", d => yScale(d.registration) - 10)
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this)
+                        .style("cursor", "none")
+                        .transition()
+                        .duration(duration)
+                        .selectAll(".text").remove();
+                })
+                .append("circle")
+                .attr("cx", d => xScale(d.date))
+                .attr("cy", d => yScale(d.registration))
+                .attr("r", circleRadius)
+                .style('opacity', circleOpacity)
+                .on("mouseover", function(d) {
+                    d3.select(this)
+                        .transition()
+                        .duration(duration)
+                        .attr("r", circleRadiusHover)
+                        .attr("class", "circleHover");
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this)
+                        .transition()
+                        .duration(duration)
+                        .attr("r", circleRadius)
+                        .attr("class", "circleNormal");
+                });
+
+
+            /* Add Axis into SVG */
+            var xAxis = d3.axisBottom(xScale).ticks(10);
+            var yAxis = d3.axisLeft(yScale).ticks(10);
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", `translate(0, ${height-margin})`)
+                .attr("class", "axisGrey")
+                .call(xAxis);
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .attr("class", "axisGrey")
+                .call(yAxis)
+                .append('text')
+                .attr("y", 15)
+                .attr("transform", "rotate(-90)")
+                .attr("fill", "#000")
+                .text("歷年登記人數");
+
+            svg.append("text")
+                .attr("class", "title-text")
+                .attr("x", (width / 2))
+                .attr("y", 0 - (margin.top / 2))
+                .attr("text-anchor", "middle")
+                .text("香港中央名冊歷年器官捐贈登記人數");
+        </script>
+
+
+    </div>
+</body>
+
+</html>

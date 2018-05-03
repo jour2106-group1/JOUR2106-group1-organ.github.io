@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="height: 80%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        app.title = '堆叠条形图';
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data: ['支持', '中立', '反對', '無意見']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                top: "15%",
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value'
+            },
+            yAxis: {
+                type: 'category',
+                data: ['18-24歲', '25-34歲', '35-44歲', '45-54歲', '55-64歲']
+            },
+            series: [{
+                    name: '支持',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideRight'
+                        }
+                    },
+
+                    data: [163.5, 280.6, 314.1, 345.5, 309.9]
+                }, {
+                    name: '中立',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideRight'
+                        }
+                    },
+                    data: [116.2, 191.1, 205.0, 219.1, 220.5]
+                }, {
+                    name: '反對',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideRight'
+                        }
+                    },
+                    data: [160.9, 275.1, 320.5, 373.8, 371.1]
+                }, {
+                    name: '無意見',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'insideRight'
+                        }
+                    },
+                    data: [40.4, 55.7, 58.3, 81.1, 80.3]
+                }
+                // , {
+                //     name: '搜索引擎',
+                //     type: 'bar',
+                //     stack: '总量',
+                //     label: {
+                //         normal: {
+                //             show: true,
+                //             position: 'insideRight'
+                //         }
+                //     },
+                //     data: [820, 832, 901, 934, 1290, 1330, 1320]
+                // }
+            ]
+        };;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+    <p style="padding-left:35%">
+        18歲至64歲居民對預設默許制度的態度
+    </p>
+</body>
+
+</html>

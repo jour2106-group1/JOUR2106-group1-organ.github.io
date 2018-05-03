@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1024px" height="768px" viewBox="0 0 1024 768">
+<defs>
+<style type="text/css"> @import url(https://fonts.googleapis.com/css?family=Pacifico); </style>
+</defs>
+<clipPath id="cp2">
+<path d="M 0,0 L 1024,0 L1024,768 L 0,768 z M 0,0 L 1280,0 L 1280,960 L 0,960 z" fill-rule="evenodd">
+</path>
+</clipPath>
+<g clip-path="url(#cp2)">
+</g>
+<rect x="0" y="0" width="1280" height="960" opacity="1" fill="#fff" stroke="none">
+</rect>
+<text x="-371.9249267578125" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#171717" stroke="none" transform="translate(510, 382) rotate(-45)">有啲人唔知點樣登記，好似強制咁</text>
+<text x="-347.12994384765625" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#171717" stroke="none" transform="translate(510, 668)">公民沒有社會義務死後獻出身體</text>
+<text x="-198.3599853515625" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#9C6043" stroke="none" transform="translate(396, 292)">個人意願較為重要</text>
+<text x="-148.76998901367188" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#E8A664" stroke="none" transform="translate(628, 468)">引發社會爭議</text>
+<text x="-148.76998901367188" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#9C6043" stroke="none" transform="translate(568, 520)">華人傳統觀念</text>
+<text x="-123.97499084472656" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#c00" stroke="none" transform="translate(614, 350) rotate(-45)">有啲人唔想</text>
+<text x="-123.97499084472656" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#E8A664" stroke="none" transform="translate(402, 418) rotate(-45)">好似搶器官</text>
+<text x="-99.17999267578125" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#171717" stroke="none" transform="translate(478, 244)">中華传统</text>
+<text x="-99.17999267578125" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#438D9C" stroke="none" transform="translate(338, 340)">宗教信仰</text>
+<text x="-99.17999267578125" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#9C6043" stroke="none" transform="translate(510, 568)">變相強迫</text>
+<text x="-74.38499450683594" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#438D9C" stroke="none" transform="translate(646, 386) rotate(-45)">强迫性</text>
+<text x="-74.38499450683594" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#c00" stroke="none" transform="translate(318, 430) rotate(-45)">不人道</text>
+<text x="-49.589996337890625" y="4.959995039999999" style="font: normal 49.599950400000004px Pacifico" text-anchor="start" dy="19.604723478260873" opacity="1" fill="#E8A664" stroke="none" transform="translate(472, 196)">忌諱</text>
+</svg>
