@@ -1,0 +1,86 @@
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+
+<body>
+
+    <svg>
+        <text x="30" y="150"  font-size="15px" text-anchor="middle" fill="black">已登記的人數</text>
+</svg>
+
+    <script>
+        var svg = d3.select('svg');
+        svg.attr('width', 450).attr('height', 460);
+
+
+        var data = [{
+            // all
+            "name": "香港總人口",
+            'height': 210,
+            'width': 230,
+            'radius': 122.45 * Math.cbrt(2),
+            'color': "#395878"
+        }, {
+            //willing 
+            "name": "願意捐獻器官的人數",
+            'height': 210,
+            'width': 230 - 122.45 * Math.cbrt(2) + 49.6 * Math.cbrt(2),
+            'radius': 49.6 * Math.cbrt(2),
+            'color': "#81D5CF"
+
+        }, {
+            //willing yes
+            "name": "願意捐獻器官且已登記的人數",
+            'height': 210,
+            'width': 230 - 122.45 * Math.cbrt(2) + 4.65 * Math.cbrt(2),
+            'radius': 4.65 * Math.cbrt(2),
+            'color': "#ED7402"
+
+        }, {
+            //unwilling
+            "name": "不願意捐獻器官的人數",
+            'height': 210,
+            'width': 230 + 122.45 * Math.cbrt(2) - 12 * Math.cbrt(2),
+            'radius': 12 * Math.cbrt(2),
+            'color': "#ADD2E3"
+
+        }];
+
+        // var frameHeight = 150;
+
+        svg
+            .selectAll('circle')
+            .data(data)
+            .enter()
+            .append('circle')
+            .attr('cy', function(d) {
+                return d['height'];
+            })
+            .attr('cx', function(d) {
+                return d['width'];
+                // return (frameHeight - d['weight']) * 1.2;
+            })
+            .attr('r', function(d) {
+                return d['radius'];
+            })
+            .attr('fill', function(d) {
+                return d['color'];
+            });
+
+        svg
+            .append("line") // attach a line
+            .style("stroke", "grey") // colour the line
+            .attr("x1", 30) // x position of the first end of the line
+            .attr("y1", 160) // y position of the first end of the line
+            .attr("x2", 230 - 122.45 * Math.cbrt(2) + 2) // x position of the second end of the line
+            .attr("y2", 210)
+            .attr("text", "器官捐獻");
+
+        svg
+            .append("text") // attach a line
+            .attr("x", 30) // x position of the first end of the line
+            .attr("y", 160) // y position of the first end of the line
+            .attr("text", "器官捐獻");
+    </script>
+</body>
