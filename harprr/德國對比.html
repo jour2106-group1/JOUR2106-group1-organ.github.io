@@ -1,238 +1,276 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
-    <title>器官捐贈</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <title>每百万人中捐赠者数量</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <style>
 
-        
-        .frame {
-            position: relative;
-            left: 15%;
-            right: 15%;
+        svg, #container{
+            height: 100%;
+            width: 100%;
+    }
+        p {
+            position: center;
+            padding-left: 10%;
         }
-        .frame2 {
-            position: relative;
-            left: 7%;
-            
-        } 
+        /* for charts */
         
+        svg {
+            font-family: Sans-Serif, Arial;
+        }
+        
+        .line {
+            stroke-width: 5;
+            fill: none;
+        }
+        
+        .axis path {
+            stroke: black;
+        }
+        
+        .text {
+            font-size: 13px;
+            fill: #003366;
+        }
+        
+        .title-text {
+            font-size: 16px;
+            fill: #003366;
+        }
+        
+        .axisGrey line {
+            stroke: #C0C0C0;
+        }
+        
+        .axisGrey path {
+            stroke: #C0C0C0;
+        }
+        
+        .axisGrey text {
+            stroke: #C0C0C0;
+            font-size: 12px;
+            stroke-width: 0.7px;
+        }
+        
+        .circleHover {
+            fill: rgb(116, 39, 46);
+        }
+        
+        .circleNormal {
+            fill: steelblue;
+        }
     </style>
 </head>
 
-<body class="is-loading">
-
-    <!-- Wrapper -->
-    <div id="wrapper">
-
-        <!-- Header -->
-        <header id="header">
-            <a href="index.html" class="logo">器官捐贈</a>
-        </header>
-
-        <!-- Nav -->
-        <nav id="nav">
-            <ul class="links">
-
-                <li class="active"><a href="index.html">器官捐贈</a></li>
-                <!-- <li><a href="index.html">問卷調查結果</a></li> -->
-                <!-- <li><a href="elements.html">Elements Reference</a></li> -->
-            </ul>
-            <ul class="icons">
-                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-        </nav>
-
-        <!-- Main -->
-        <div id="main">
-
-            <!-- Post -->
-            <section class="post">
-                <header class="major">
-                    <span class="date">May 4, 2018</span>
-                    <h1>香港器官捐贈制度<br /> 的現狀與未來</h1>
-                    <p>1:13的供應與需求比例下<br/>香港要如何才能解決器官短缺問題？</p>
-                </header>
-                <div class="image main"><img src="head.jpg" alt="" /></div>
-                <p>
-                    世界上各國現行的器官捐贈制度大致有兩種，分別為自願捐贈制度與預設默許器官捐贈制度。自願捐贈制度是指，想要在死後捐出器官的人需要在生前向政府登記表明捐贈意願，死後方能被納入器官捐贈者的考量。而預設默許制度與之相反，即若公民生前若未向政府登記表明不想捐出器官，則便被視為有意願捐出器官。預設默許制度又分為軟性與硬性，目前實行預設默許制度的國家大多實行軟性預設默許制度，即使公民在生前未向政府登記表明不想捐出器官，但若其家屬反對將其器官捐出，醫院便不會將死者器官用於捐贈移植。而硬性則是指，無論死者家屬反對與否，是否將死者器官用於捐贈只會參照死者生前是否曾登記不成為捐贈者。以上制度的具體實施流程如下圖：
-                </p>
-		    <div class="frame2">
-                <img src="harprr/無標題.png" width=80%></img><br/><br/>
-		    </div>
-                <p>
-                    香港、中國大陸與大多數亞洲地區目前實行的器官捐贈制度是自願捐贈制度，而大多數歐盟國家與美國數個洲實行的是軟性預設默許制度，新加坡與法國則是少有的實行硬性預設默許器官捐贈制度的國家。
-                </p>
-		<div class="frame">
-			<img src="outoutcountries.png" width=70%></img>
-		</div>
-                <p>
-                    同樣是實施預設默許的國家，實行軟性制度的西班牙和法國器官捐贈率高，而實行最嚴格的硬性制度的新加坡卻器官捐贈率很低；法國在實行了幾十年軟性制度之後在去年改成了硬性制度。文化背景基本相似的德國和奧地利，實施預設默許制度的奧地利器官捐贈率遠高於實施自願捐贈制度的德國。中國在2015年前雖是自願捐贈，但捐贈率居高不下，一大重要原因就是中國死刑犯的器官會被用於捐贈。香港為世界上器官捐贈率最低的地區之一，香港食物及衞生局局長高永文於2015年表示，會考慮仿效外國立法規定市民「預設默許」（opt－out）捐贈器官，引起巨大爭議。
-
-                </p>
-                <p>
-                    那麼，相比於自願捐贈制度更有導向性的預設默許制度、相比於軟性更有強制性的硬性預設默許制度，真的會帶來更高的器官捐贈的數量嗎？影響器官捐贈數量的因素有哪些？香港是否應該學習西班牙、法國實行預設默許器官捐贈制度？本文將從典型國家案例分析入手，探討捐贈制度與器官捐贈率之間的關係，展望香港未來器官捐贈制度的發展。
-                </p><br/>
-                <h2>世界各國器官捐贈率一覽</h2>
-                <p>
-                    下圖為GODT（全球器官捐贈數據庫）所供數據制成的全球器官捐贈數量水平圖。可見歐洲國家大多處於較高捐贈水平，亞洲則較低。
-                </p>
-                <img src="harprr/全球捐赠数量地图.svg" width=90%></img>
-	<br/>
-                <h2>
-                    德國與奧地利對比
-                </h2>
-                <p>
-                    據學術雜誌《Science》的報告，同為為文化背景相近的歐盟國家，採用「自願捐贈制度」的德國，「同意捐贈器官率」只有12%，而採用「預設默許」的奧地利則高達99.98%。而兩國每百萬人中最終將器官捐贈出去的人數也有一倍之差。從下圖可以看出，奧地利的每百萬人中捐贈者人數有逐年上升的趨勢，而德國則相反。
-                </p>
-
-                <div class="frame">
-                    <iframe src="harprr/德國對比.html" position=relative width=100% height=550px scrolling="yes"></iframe><br/> 
-                </div>
-                <h2>香港器官短缺現狀</h2>
-                <p>二零零八年十一月，香港政府推出中央器官捐獻登記名冊，截止至2009年末，共有逾45000人進行登記，但隨後每年登記人數逐漸穩定值25000人左右，為鼓勵市民進行器官捐贈，二零一六年香港政府成立器官捐贈推廣委員會，同年中央名冊登記人數增長13293人，達到52550人，創下歷史新高。</p>
-                <div class="frame">
-                    <iframe src="bonnie/歷年登記人數.html" width=100% height=500px></iframe>
-                </div>
-                <p>
-                    但增長速度緩慢的器官捐贈數量並不能滿足對於器官的需求。以腎臟為例，截止至2017年12月31日，香港共有2153人輪候腎臟移植手術，而2017年全年只有78例腎臟捐贈，平均需輪候51個月，最久可達351個月，可用器官與所需器官比例近乎1：27.6 。
-                </p>
-                <h4>
-			點擊下方圖片查看香港目前器官短缺現狀：</br>（資料來源:器官捐贈的主題性住戶統計調查結果)
-                </h4>
-
-                <div class="frame">
-                    <iframe src="bonnie/pic.html" width=90% height=800px></iframe>
-                </div>
-
-                <h2>
-                    預設默許是否一定行之有效？
-                </h2>
-                <p>
-                    預設默許捐贈制度會大幅度提升器官供應者的數量。此制度在其他國家也的確取得了巨大成效。比利時推行此政策三年之間，腎臟捐贈由每百萬人18.9宗增加至41.3宗。奧地利實施此政策四年，器官捐贈者由每百萬人中4.6人增加逾倍至10.1人。
-                </p>
-                <p>
-                    但預設默許制度並非一定行之有效。現時，預設默許制度下分為「軟性」與「硬性」，西班牙採用軟性預設默許制度，即為手術前諮詢且尊重捐獻者家屬意見，人性化關懷為器官捐獻的實行加分不少，使得近30年來，西班牙一直位居器官捐獻榜首，根據國際器官捐贈與移植登記組織（IROdat）的數據顯示，2017年，西班牙每百萬人中有46.9人捐出器官，而香港每百萬人中只有6人進行器官捐獻，不足西班牙的八分之一。
-                </p>
-	    <div class="frame">
-	    <img src="organ/Janice/organratio.png" width=70%></img>
-	</div><br/>
-                <p>
-                    而新加坡則採用硬性預設默許制度HOTA(Human Organ Transplant Act)，新加坡居民于21歲被默認為器官捐獻者，如不拒絕該安排，器官即會于腦死亡后被捐出，而在此過程中，家屬意見將完全不予考慮。硬性故新加坡長期存在醫生拒絕家人請求「強取」器官的社會矛盾事件，而器官捐贈率也一直位居倒數。
-                </p><br/>
+<body>
 
 
-                <h2>
-                    預設默許在港推行難
-                </h2>
-                <p>
-                    根據政府調查，32.5%的香港市民願意捐獻器官，但目前只有3.78%的人進行了器官捐獻登記，在問卷調查中，近半人表示器官捐贈不是當務之急，故沒有進行登記，推行預設默許制度能將持該觀念的人有效轉化為可用器官，粗略估計至少可增加210萬後備器官。
-                </p>
-                <iframe src="bonnie/bubble1.html" width=100% height=500px scrolling="yes"></iframe>
-                <p>
-                    但預設默許制度在香港推行並非易事，在「主題性住戶統計調查第63號報告書」中，35.9%的人表示不支持該制度，在我們發放的300份調查問卷中，亦有近三分之一的參與者對預設默許制度提出反對意見，「香港法律制度令該制度存在爆發矛盾的潛在風險」、「非自願，不尊重個人選擇權」、「對不知情的人來講是變相強迫」、「與傳統觀念相背」，思想與
-                </p>
-                <iframe src="bonnie/bar-against.html" width=100% height=400px></iframe>
+    <div id="chart">
 
 
+        <script>
+            var data = [{
+                name: "德國",
+                values: [{
+                    date: "2010",
+                    price: "15.79"
+                }, {
+                    date: "2011",
+                    price: "14.6"
+                }, {
+                    date: "2012",
+                    price: "12.77"
+                }, {
+                    date: "2013",
+                    price: "10.58"
+                }, {
+                    date: "2014",
+                    price: "10.45"
+                }, {
+                    date: "2015",
+                    price: "10.87"
+                }, {
+                    date: "2016",
+                    price: "10.62"
+                }]
+            }, {
+                name: "奧地利",
+                values: [{
+                    date: "2010",
+                    price: "23.33"
+                }, {
+                    date: "2011",
+                    price: "24.4"
+                }, {
+                    date: "2012",
+                    price: "23.57"
+                }, {
+                    date: "2013",
+                    price: "24.47"
+                }, {
+                    date: "2014",
+                    price: "24.94"
+                }, {
+                    date: "2015",
+                    price: "24.12"
+                }, {
+                    date: "2016",
+                    price: "25.23"
+                }]
+            }];
+            var width = 500;
+            var height = 350;
+            var margin = 50;
+           
+            var duration = 250;
+            var lineOpacity = "0.25";
+            var lineOpacityHover = "0.85";
+            var otherLinesOpacityHover = "0.1";
+            var lineStroke = "5px";
+            var lineStrokeHover = "10px";
+            var circleOpacity = '0.85';
+            var circleOpacityOnLineHover = "0.25"
+            var circleRadius = 5;
+            var circleRadiusHover = 9;
+            /* Format Data */
+            var parseDate = d3.timeParse("%Y");
+            data.forEach(function(d) {
+                d.values.forEach(function(d) {
+                    d.date = parseDate(d.date);
+                    d.price = +d.price;
+                });
+            });
+            /* Scale */
+            var xScale = d3.scaleTime()
+                .domain(d3.extent(data[1].values, d => d.date))
+                .range([0, width - margin]);
+            var yScale = d3.scaleLinear()
+                .domain([0, 5 + d3.max(data[1].values, d => d.price)])
+                .range([height - margin, 0]);
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
+            /* Add SVG */
+            var svg = d3.select("#chart").append("svg")
+                .attr("width", (width + margin) + "px")
+                .attr("height", (height + margin) + "px")
+                .attr('viewBox', '30 0 ' + (width + 2* margin) + ' ' + (height + margin))
+                .append('g')
+                .attr("transform", `translate(${margin}, ${margin})`);
+            /* Add line into SVG */
+            var line = d3.line()
+                .x(d => xScale(d.date))
+                .y(d => yScale(d.price));
+            let lines = svg.append('g')
+                .attr('class', 'lines');
+            lines.selectAll('.line-group')
+                .data(data).enter()
+                .append('g')
+                .attr('class', 'line-group')
+                .on("mouseover", function(d, i) {
+                    svg.append("text")
+                        .attr("class", "title-text")
+                        .style("fill", color(i))
+                        .text(d.name)
+                        .attr("text-anchor", "middle")
+                        .attr("x", (width - margin) / 2)
+                        .attr("y", 150);
+                })
+                .on("mouseout", function(d) {
+                    svg.select(".title-text").remove();
+                })
+                .append('path')
+                .attr('class', 'line')
+                .attr('d', d => line(d.values))
+                .style('stroke', (d, i) => color(i))
+                .style('opacity', lineOpacity)
+                .on("mouseover", function(d) {
+                    d3.selectAll('.line')
+                        .style('opacity', otherLinesOpacityHover);
+                    d3.selectAll('.circle')
+                        .style('opacity', circleOpacityOnLineHover);
+                    d3.select(this)
+                        .style('opacity', lineOpacityHover)
+                        .style("stroke-width", lineStrokeHover)
+                        .style("cursor", "pointer");
+                })
+                .on("mouseout", function(d) {
+                    d3.selectAll(".line")
+                        .style('opacity', lineOpacity);
+                    d3.selectAll('.circle')
+                        .style('opacity', circleOpacity);
+                    d3.select(this)
+                        .style("stroke-width", lineStroke)
+                        .style("cursor", "none");
+                });
+            /* Add circles in the line */
+            lines.selectAll("circle-group")
+                .data(data).enter()
+                .append("g")
+                .style("fill", (d, i) => color(i))
+                .selectAll("circle")
+                .data(d => d.values).enter()
+                .append("g")
+                .attr("class", "circle")
+                .on("mouseover", function(d) {
+                    d3.select(this)
+                        .style("cursor", "pointer")
+                        .append("text")
+                        .attr("class", "text")
+                        .text(`${d.price}`)
+                        .attr("x", d => xScale(d.date) + 5)
+                        .attr("y", d => yScale(d.price) - 10);
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this)
+                        .style("cursor", "none")
+                        .transition()
+                        .duration(duration)
+                        .selectAll(".text").remove();
+                })
+                .append("circle")
+                .attr("cx", d => xScale(d.date))
+                .attr("cy", d => yScale(d.price))
+                .attr("r", circleRadius)
+                .style('opacity', circleOpacity)
+                .on("mouseover", function(d) {
+                    d3.select(this)
+                        .transition()
+                        .duration(duration)
+                        .attr("r", circleRadiusHover);
+                })
+                .on("mouseout", function(d) {
+                    d3.select(this)
+                        .transition()
+                        .duration(duration)
+                        .attr("r", circleRadius);
+                });
+            /* Add Axis into SVG */
+            var xAxis = d3.axisBottom(xScale).ticks(5);
+            var yAxis = d3.axisLeft(yScale).ticks(5);
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", `translate(0, ${height-margin})`)
+                .call(xAxis);
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append('text')
+                .attr("y", 15)
+                .attr("transform", "rotate(-90)")
+                .attr("fill", "#000")
+                .text("每百萬人中器官捐贈者人數");
+            svg.append("text")
+                .attr("class", "title")
+                .attr("x", (width / 2))
+                .attr("y", 0 - (margin.top / 2))
+                .attr("text-anchor", "middle")
+                .text("奧地利與德國對比 －近年每百萬人中器官捐贈者人數")
+        </script>
 
-                <h2>
-                    器官捐贈要腦死亡 器官捐贈團體對預設默許機制有保留
-                </h2>
-                <p>
-                    在香港，只有腦死亡的人才可以把器官捐贈出去。現時政府宣傳上無特別指明是哪一種死亡狀態才可以捐器官，但實際上並非所有人過身都可以捐器官。要「腦死亡」的人才可以捐器官。大部分的「腦死亡」個案都是因為腦幹受損，如中風，有交通意外撞到頭，因此大部分都是很突然的情況。香港平均每年有40000多人過身，但每年不足100人腦幹死亡。基本上，除了眼角膜，所有器官都要靠腦死亡才可以捐贈。
-                </p>
-                <p>
-                    香港移植運動協會香港區大使黃炎華表示，對預設默許器捐贈有保留。「判定腦死亡時候，有儀器的幫助下，死者的身體還是暖的，死者仍然會有心跳。大部分家屬在這個時候都不相信自己的親人已經過身了。因此，要他們在那一刻相信醫生的判斷是很困難的。」
-                </p>
-                <p>
-                    有了預設默許機制之後，他擔心會令到港人會更抗拒器官捐贈。「因為這個機制實行的方式是，你不反對，我就拿（器官走了），這樣會令到很多對器官捐贈不太熟悉的人，即使未考慮清楚，也先去申請了反對，到想清楚了，再去撤銷，反而會令更多人沒有去捐贈器官。」
-                </p>
-                <p>
-                    黃炎華認為，要令港人更接受器官捐贈，應該由捐贈者的家人入手。因為在香港推展器官捐贈的最大阻力是他們的家人，和港人避談生死的觀念有關。他指出，很多時候逝者的家人都不知道他們的意願，所以就乾脆不捐他們家人的器官出來。「如果可以在事前告訴家人自己的意願，相信可以得到家人的諒解，大部分人也會尊重本人的意願。」黃炎華期望可以將器官捐贈變得如捐血般普遍，並對器官捐贈的推廣工作感到樂觀。
-                </p><br/>
-                <h2>
-                    學校教育或為推行器官捐贈新思路
-                </h2>
-                <p>
-                    部分未登記器官捐獻市民表示不了解如何進行捐獻，為加強市民對於器官捐贈的認識與關注，推行相應學校教育或許更有效。現就讀于香港浸會大學一年級的21歲馬來西亞學生丁敏表示，她早在2012年就已登記自願捐獻器官，「死後器官也不能再用了，如果可以讓別人繼續活下去或者有更好的生活，我覺得很好」。
-                </p>
-                <p>
-                    丁敏所就讀的中學有鼓勵學生捐血與捐獻器官的傳統，不僅平日會邀請醫生來開座談會，更是會在家長日于禮堂內舉辦捐血運動和器官捐贈註冊活動，鼓勵學生和家長登記器官捐贈，「登記後還是蠻開心的，感覺有機會做好事了」，但她也自認如果自己對器官捐贈沒有預先了解，看到街道上的器官捐贈廣告也并不會給予過多關注。黃炎華也表示,期待香港將該方面教育納入學校常規教育。
-                </p>
-            </section>
 
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <section>
-                <form method="post" action="#">
-                    <div class="field">
-                        <h3>參考文件：</h3>
-                        <!-- <label for="name">Name</label>
-                        <input type="text" name="name" id="name" /> -->
-
-
-                    </div>
-
-                </form>
-            </section>
-            <section class="split contact">
-                <section class="alt">
-                    <h3>Address</h3>
-                    <p>1234 Somewhere Road #87257<br /> Nashville, TN 00000-0000</p>
-                </section>
-                <section>
-                    <h3>Phone</h3>
-                    <p><a href="#">(000) 000-0000</a></p>
-                </section>
-                <section>
-                    <h3>Email</h3>
-                    <p><a href="#">info@untitled.tld</a></p>
-                </section>
-                <section>
-                    <h3>Social</h3>
-                    <ul class="icons alt">
-                        <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-                        <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="https://github.com/jour2106-group1" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </section>
-            </section>
-        </footer>
-
-        <!-- Copyright -->
-        <div id="copyright">
-            <ul>
-                <li>&copy; Untitled</li>
-                <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-            </ul>
-        </div>
 
     </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
 
 </body>
 
