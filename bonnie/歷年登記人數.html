@@ -4,6 +4,11 @@
     <title>歷年登記人數</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
+        
+        svg, #container{
+            height: 100%;
+            width: 100%;
+    }
         p {
             position: relative;
             padding-left: 10%;
@@ -147,6 +152,7 @@
             var svg = d3.select("#chart").append("svg")
                 .attr("width", (width + margin) + "px")
                 .attr("height", (height + margin) + "px")
+                .attr('viewBox', '30 0 ' + (width + 2* margin) + ' ' + (height + margin))
                 .append('g')
                 .attr("transform", `translate(${margin}, ${margin})`);
 
